@@ -137,6 +137,10 @@ body {
   width: 100vw;
 }
 
+#__next {
+  height: 100%;
+}
+
 @for $i from 1 through 100 {
   .p-l-#{$i} {
     padding-left: #{$i}px;
