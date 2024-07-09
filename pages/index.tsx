@@ -1,9 +1,26 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
+import { useTranslation } from 'react-i18next'
+import Button from '@mui/material/Button';
+import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+
+  const { 
+    t,
+    i18n: { changeLanguage, language} 
+  } = useTranslation();
+
+  const [currentLanguage, setCurrentLanguage ] = useState(language);
+
+  const handleChangeLanguage = () => {
+    const newLanguage = currentLanguage === 'en' ? 'pt' : 'en';
+    changeLanguage(newLanguage);
+    setCurrentLanguage(newLanguage);
+  };
+
   return (
     <>
       <Head>
@@ -12,8 +29,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={inter.className}>
-        INDEX
+      <div className={`${inter.className} ${'h100'} ${'horizontalCenter'} ${'verticalCenter'}`}>
+          <Button variant="contained" onClick={handleChangeLanguage}>{t('changeLanguage')}</Button>
       </div>
     </>
   );
