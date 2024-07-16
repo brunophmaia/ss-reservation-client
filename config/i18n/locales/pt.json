@@ -1,6 +1,7 @@
 {
     "translation": {
         "player": "SOU JOGADOR",
+        "owner": "SOU PROPRIETÁRIO",
         "changeLanguage": "MUDAR IDIOMA",
         "welcomeApp": "Bem-vindo ao {{appName}}"
     }

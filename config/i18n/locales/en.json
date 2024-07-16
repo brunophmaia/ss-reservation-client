@@ -1,6 +1,7 @@
 {
     "translation": {
         "player": "I'M PLAYER",
+        "owner": "I'M OWNER",
         "changeLanguage": "CHANGE LANGUAGE",
         "welcomeApp": "Welcome to {{appName}}"
     }

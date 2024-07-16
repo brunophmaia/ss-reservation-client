@@ -3,10 +3,13 @@ import { Inter } from "next/font/google";
 import { useTranslation } from 'react-i18next'
 import Button from '@mui/material/Button';
 import { useState } from "react";
+import { useRouter } from 'next/navigation';
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+
+  const router = useRouter();
 
   const { 
     t,
@@ -31,6 +34,7 @@ export default function Home() {
       </Head>
       <div className={`${inter.className} ${'h100'} ${'horizontalCenter'} ${'verticalCenter'}`}>
           <Button variant="contained" onClick={handleChangeLanguage}>{t('changeLanguage')}</Button>
+          <Button variant="contained" onClick={() => router.push('/login-type')}>LOGIN</Button>
       </div>
     </>
   );

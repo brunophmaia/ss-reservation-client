@@ -11,7 +11,7 @@ body.light-theme {
 
 body.dark-theme {
   --background-color: #000000;
-  --text-color: #b9b9b9;
+  --text-color: #e0e0e0;
   --primary-color: #1e90ff;
   --secondary-color: #ff79c6;
 
@@ -70,5 +70,21 @@ body {
 
   .p-b-#{$i} {
     padding-bottom: #{$i}px;
+  }
+
+  .m-l-#{$i} {
+    margin-left: #{$i}px;
+  }
+
+  .m-r-#{$i} {
+    margin-right: #{$i}px;
+  }
+
+  .m-t-#{$i} {
+    margin-top: #{$i}px;
+  }
+
+  .m-b-#{$i} {
+    margin-bottom: #{$i}px;
   }
 }
