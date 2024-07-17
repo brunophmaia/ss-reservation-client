@@ -6,17 +6,20 @@ import { useEffect, useState } from 'react';
 
 export default function Login() {
 
+  const [ type, setType ] = useState<UserType>();
   const router = useRouter();
   const { query } = router;
-  const [ type, setType ] = useState<UserType>();
-
+  
   useEffect(() => {
-    if (query.t) {
+    if(router.isReady) {
       if(query.t == 'player') {
         setType(UserType.PLAYER);
       }
       else if (query.t == 'owner') {
         setType(UserType.OWNER);
+      }
+      else {
+        router.push('/');
       }
     }
   }, [query]);

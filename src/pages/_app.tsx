@@ -6,10 +6,13 @@ import { DeviceProvider } from "@/context/device-context";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 export default function App({ Component, pageProps }: AppProps) {
+
+  const googleCliendId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string;
+
   return (
     <ThemeProvider>
       <DeviceProvider>
-        <GoogleOAuthProvider clientId='415197702083-j736do744e0nk9mr9kcrbcjr6iv8oa1s.apps.googleusercontent.com'>
+        <GoogleOAuthProvider clientId={googleCliendId}>
           <Component {...pageProps} />
         </GoogleOAuthProvider>
       </DeviceProvider>
