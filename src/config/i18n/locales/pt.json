@@ -1,8 +1,17 @@
 {
     "translation": {
-        "player": "SOU JOGADOR",
-        "owner": "SOU PROPRIETÁRIO",
-        "changeLanguage": "MUDAR IDIOMA",
-        "welcomeApp": "Bem-vindo ao {{appName}}"
+        "home": {
+            "owner": "SOU PROPRIETÁRIO",
+            "player": "SOU JOGADOR",
+            "welcomeApp": "Bem-vindo ao {{appName}}"
+        },
+        "login": {
+            "createAccount": "Não tem uma conta? Clique aqui para criar uma.",
+            "email": "E-mail",
+            "login": "ENTRAR",
+            "loginWithEmail": "Entrar com e-mail e senha:",
+            "or": "OU",
+            "password": "Senha"
+        }
     }
 }

@@ -1,8 +1,17 @@
 {
     "translation": {
-        "player": "I'M PLAYER",
-        "owner": "I'M OWNER",
-        "changeLanguage": "CHANGE LANGUAGE",
-        "welcomeApp": "Welcome to {{appName}}"
+        "home": {
+            "owner": "I'M OWNER",
+            "player": "I'M PLAYER",
+            "welcomeApp": "Welcome to {{appName}}"
+        },
+        "login": {
+            "createAccount": "Don't have an account? Click here to create one.",
+            "email": "Email",
+            "login": "LOGIN",
+            "loginWithEmail": "Login with email and password:",
+            "or": "OR",
+            "password": "Password"
+        }
     }
 }

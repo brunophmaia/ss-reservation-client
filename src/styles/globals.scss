@@ -15,8 +15,26 @@ body.dark-theme {
   --primary-color: #1e90ff;
   --secondary-color: #ff79c6;
 
-  .test{
-    background-color: rgb(255, 6, 6);
+  .text-field-override {
+
+    .MuiInputBase-root {
+      color: var(--text-color);
+    }
+    .MuiInputLabel-root {
+      color: var(--text-color);
+    }
+    .MuiSvgIcon-root {
+      color: var(--text-color);
+    }
+    .MuiInput-underline:before {
+      border-bottom-color: rgba(255, 255, 255, 0.42); /* Borda cinza */
+    }
+    .MuiInput-underline:hover:not(.Mui-disabled):before {
+      border-bottom-color: rgba(255, 255, 255, 0.87); /* Borda cinza clara ao passar o mouse */
+    }
+    .MuiInput-underline:after {
+      border-bottom-color: var(--border-color); /* Borda ao focar */
+    }
   }
 }
 
@@ -41,6 +59,10 @@ body {
 .verticalCenter {
   display: flex;
   align-items: center;
+}
+
+.flex{
+  display: flex;
 }
 
 .h100 {
