@@ -26,14 +26,8 @@ body.dark-theme {
     .MuiSvgIcon-root {
       color: var(--text-color);
     }
-    .MuiInput-underline:before {
-      border-bottom-color: rgba(255, 255, 255, 0.42); /* Borda cinza */
-    }
-    .MuiInput-underline:hover:not(.Mui-disabled):before {
-      border-bottom-color: rgba(255, 255, 255, 0.87); /* Borda cinza clara ao passar o mouse */
-    }
-    .MuiInput-underline:after {
-      border-bottom-color: var(--border-color); /* Borda ao focar */
+    .MuiOutlinedInput-notchedOutline {
+      border-color: rgba(255, 255, 255, 0.42); /* Borda cinza */
     }
   }
 }
