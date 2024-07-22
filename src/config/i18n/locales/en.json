@@ -8,10 +8,12 @@
         "login": {
             "createAccount": "Don't have an account? Click here to create one.",
             "email": "Email",
+            "inputEmailPswd": "Please enter the credentials.",
             "login": "LOGIN",
             "loginWithEmail": "Login with email and password:",
             "or": "OR",
-            "password": "Password"
+            "password": "Password",
+            "validEmail": "Please enter a valid email."
         }
     }
 }
