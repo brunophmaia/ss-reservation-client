@@ -1,5 +1,21 @@
 {
     "translation": {
+        "common": {
+            "email": "E-mail",
+            "password": "Senha"
+        },
+        "createAccount": {
+            "birthDate": "Data de Nascimento",
+            "confirmPassword": "Confirmar senha",
+            "createAccountTitle": "CRIAR CONTA",
+            "female": "Feminino",
+            "gender": "Gênero",
+            "lastName": "Sobrenome",
+            "male": "Masculino",
+            "name": "Nome",
+            "other": "Outro",
+            "phoneNumber": "Telefone"
+        },
         "home": {
             "owner": "SOU PROPRIETÁRIO",
             "player": "SOU JOGADOR",
@@ -7,12 +23,10 @@
         },
         "login": {
             "createAccount": "Não tem uma conta? Clique aqui para criar uma.",
-            "email": "E-mail",
             "inputEmailPswd": "Insira as credenciais.",
             "login": "ENTRAR",
             "loginWithEmail": "Entrar com e-mail e senha:",
             "or": "OU",
-            "password": "Senha",
             "validEmail": "Por favor insira um e-mail válido."
         }
     }

@@ -1,5 +1,21 @@
 {
     "translation": {
+        "common": {
+            "email": "Email",
+            "password": "Password"
+        },
+        "createAccount": {
+            "birthDate": "Birth Date",
+            "confirmPassword": "Confirm password",
+            "createAccountTitle": "CREATE ACCOUNT",
+            "female": "Female",
+            "gender": "Gender",
+            "lastName": "Last Name",
+            "male": "Male",
+            "name": "Name",
+            "other": "Other",
+            "phoneNumber": "Phone Number"
+        },
         "home": {
             "owner": "I'M OWNER",
             "player": "I'M PLAYER",
@@ -7,12 +23,10 @@
         },
         "login": {
             "createAccount": "Don't have an account? Click here to create one.",
-            "email": "Email",
             "inputEmailPswd": "Please enter the credentials.",
             "login": "LOGIN",
             "loginWithEmail": "Login with email and password:",
             "or": "OR",
-            "password": "Password",
             "validEmail": "Please enter a valid email."
         }
     }
