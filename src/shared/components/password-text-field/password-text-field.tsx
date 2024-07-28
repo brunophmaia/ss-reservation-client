@@ -3,7 +3,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-export default function PasswordTextField() {
+export default function PasswordTextField({ onInputChange, id }: any) {
 
     const { t } = useTranslation();
 
@@ -12,12 +12,21 @@ export default function PasswordTextField() {
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => event.preventDefault();
 
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(event.target.value);
+        if(onInputChange){
+            onInputChange(event.target.value);
+        }
+    };
+
     return (
         <FormControl required className='w100 text-field-override'>
-            <InputLabel htmlFor="outlined-adornment-password">{t('common.password')}</InputLabel>
+            <InputLabel htmlFor={id}>{t('common.password')}</InputLabel>
             <OutlinedInput
-                id="outlined-adornment-password"
+                id={id}
                 type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={handleChange}
                 label={t('login.password')}
                 endAdornment={
                 <InputAdornment position="end">
