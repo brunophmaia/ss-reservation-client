@@ -1,9 +1,10 @@
-import { FormControl, InputLabel, InputAdornment, IconButton, OutlinedInput  } from '@mui/material';
+import { FormControl, InputLabel, InputAdornment, IconButton, OutlinedInput, FormHelperText  } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import styles from './PasswordTextFiled.module.scss';
 
-export default function PasswordTextField({ onInputChange, id }: any) {
+export default function PasswordTextField({ onInputChange, id, helperMessage, label }: any) {
 
     const { t } = useTranslation();
 
@@ -27,7 +28,7 @@ export default function PasswordTextField({ onInputChange, id }: any) {
                 type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={handleChange}
-                label={t('login.password')}
+                label={label ? label : t('login.password')}
                 endAdornment={
                 <InputAdornment position="end">
                     <IconButton
@@ -41,6 +42,11 @@ export default function PasswordTextField({ onInputChange, id }: any) {
                 </InputAdornment>
                 }
             />
+            {!password && (
+                <FormHelperText className={styles.marginHelper} error>
+                {helperMessage}
+                </FormHelperText>
+            )}
         </FormControl>
     );
 }

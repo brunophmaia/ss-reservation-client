@@ -29,7 +29,9 @@ export default function EmailLogin(){
               <EmailTextField/>
             </div>
             <div className='flex p-t-8'>
-              <PasswordTextField/>
+              <PasswordTextField
+                helperMessage={t('common.enterField', {field: t('common.password')})}
+              />
             </div>
             <div className='p-t-32 p-b-16'>
               <div className='flex'>

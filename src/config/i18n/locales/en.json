@@ -2,11 +2,12 @@
     "translation": {
         "common": {
             "email": "Email",
+            "enterField": "Enter the field {{field}}.",
             "password": "Password"
         },
         "createAccount": {
             "birthDate": "Birth Date",
-            "confirmPassword": "Confirm password",
+            "confirmPassword": "Password Confirmation",
             "createAccountTitle": "CREATE ACCOUNT",
             "female": "Female",
             "gender": "Gender",
