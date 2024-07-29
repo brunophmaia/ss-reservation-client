@@ -15,7 +15,10 @@
             "male": "Masculino",
             "name": "Nome",
             "other": "Outro",
-            "phoneNumber": "Telefone"
+            "passwordMissmatch": "As senhas não coincidem.",
+            "phoneNumber": "Telefone",
+            "validBirthDate": "Insira uma Data de Nascimento válida.",
+            "validPhone": "Insira uma Telefone válido."
         },
         "home": {
             "owner": "SOU PROPRIETÁRIO",

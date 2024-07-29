@@ -62,7 +62,8 @@ export default function CreateAccount() {
                   onChange={e => accountForm.birthDate.setValue(e.target.value)}/>
                   {!accountForm.birthDate.valid && (
                     <FormHelperText className={styles.marginHelper} error>
-                      {t('common.enterField', {field: t('createAccount.birthDate')})}
+                      {accountForm.birthDate.showValidBirthDate ? t('createAccount.validBirthDate') : 
+                                                                  t('common.enterField', {field: t('createAccount.birthDate')})}
                     </FormHelperText>
                   )}
               </FormControl>
@@ -105,7 +106,8 @@ export default function CreateAccount() {
                 id='passwordConfirmationCreate'
                 showHelper={!accountForm.passwordConfirmation.valid}
                 onInputChange={(value: string) => {accountForm.passwordConfirmation.setValue(value)}}
-                helperMessage={t('common.enterField', {field: t('createAccount.confirmPassword')})}
+                helperMessage={accountForm.passwordConfirmation.showMissmatch ? t('createAccount.passwordMissmatch') :
+                                                                                t('common.enterField', {field: t('createAccount.confirmPassword')})}
                 label={t('createAccount.confirmPassword')} >
               </PasswordTextField>
             </div>
@@ -123,7 +125,8 @@ export default function CreateAccount() {
                 />
                 {!accountForm.phone.valid && (
                   <FormHelperText className={styles.marginHelper} error>
-                    {t('common.enterField', {field: t('createAccount.phoneNumber')})}
+                    {accountForm.phone.showValidPhone ? t('createAccount.validPhone') : 
+                                                        t('common.enterField', {field: t('createAccount.phoneNumber')})}
                   </FormHelperText>
                 )}
               </FormControl>

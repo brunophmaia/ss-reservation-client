@@ -15,7 +15,10 @@
             "male": "Male",
             "name": "Name",
             "other": "Other",
-            "phoneNumber": "Phone Number"
+            "passwordMissmatch": "The Passwords do not match.",
+            "phoneNumber": "Phone Number",
+            "validBirthDate": "Enter a valid Birth Date.",
+            "validPhone": "Enter a valid Phone."
         },
         "home": {
             "owner": "I'M OWNER",
