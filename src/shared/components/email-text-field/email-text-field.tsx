@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './EmailTextFiled.module.scss';
 
-export default function EmailTextField({ onInputChange }: any) {
+export default function EmailTextField({ onInputChange, showHelper }: any) {
 
     const { t } = useTranslation();
 
@@ -25,9 +25,9 @@ export default function EmailTextField({ onInputChange }: any) {
             label={t('common.email')}
             value={email}
             onChange={handleEmailChange}
-            error={emailError}
+            error={emailError || showHelper}
             FormHelperTextProps={{ className: styles.marginHelper }}
-            helperText={emailError ? t('login.validEmail') : ""}
+            helperText={emailError || showHelper ? t('login.validEmail') : ""}
             inputProps={{
                 type: "email",
             }}

@@ -1,41 +1,22 @@
 import { Box, Button, FormControl, FormControlLabel, FormHelperText, FormLabel, InputLabel, OutlinedInput, Radio, RadioGroup, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDevice } from "@/context/device-context";
 import styles from './CreateAccount.module.scss';
 import PasswordTextField from "@/shared/components/password-text-field/password-text-field";
-import { Account } from "./models/account.model";
 import EmailTextField from "@/shared/components/email-text-field/email-text-field";
-import { BirthDateMask, checkValidForm, PhoneMask } from "./util/create-account.util";
-
-interface FormCreateAcount {
-  value: string;
-  valid: boolean;
-}
-
-const initForm: FormCreateAcount = {
-  valid: true,
-  value: ''
-};
+import { BirthDateMask, PhoneMask } from "./util/create-account.util";
+import { AccountForm } from "./models/account-valitation.model";
 
 export default function CreateAccount() {
 
   const { isMobile } = useDevice();
   const { t } = useTranslation();
-  
-  const [nameForm, setNameForm] = useState<FormCreateAcount>(initForm);
-  const [lastNameForm, setLastNameForm] = useState<FormCreateAcount>(initForm);
-  const [birthDateForm, setBirthDateForm] = useState<FormCreateAcount>(initForm);
-  const [genderForm, setGenderForm] = useState<FormCreateAcount>(initForm);
-  const [emailForm, setEmailForm] = useState<FormCreateAcount>(initForm);
-  const [passwordForm, setPasswordForm] = useState<FormCreateAcount>(initForm);
-  const [passwordConfirmationForm, setPasswordConfirmationForm] = useState<FormCreateAcount>(initForm);
-  const [phoneForm, setPhoneForm] = useState<FormCreateAcount>(initForm);
+
+  let accountForm = new AccountForm();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    const account = new Account(nameForm.value, lastNameForm.value, birthDateForm.value, genderForm.value, emailForm.value, passwordForm.value, passwordConfirmationForm.value, phoneForm.value);
-    const accountValidation = checkValidForm(account);
+    accountForm.validate();
   };
 
   return (
@@ -50,23 +31,23 @@ export default function CreateAccount() {
                 required
                 label={t('createAccount.name')}
                 FormHelperTextProps={{ className: styles.marginHelper }}
-                helperText={!nameForm.valid ? t('common.enterField', {field: t('createAccount.name')}) : ""}
-                error={!nameForm.valid}
+                helperText={!accountForm.name.valid ? t('common.enterField', {field: t('createAccount.name')}) : ""}
+                error={!accountForm.name.valid}
                 variant="outlined"
-                value={nameForm.value}
-                onChange={e => setNameForm({value: e.target.value, valid: !!e.target.value})}/>
+                value={accountForm.name.value}
+                onChange={e => accountForm.name.setValue(e.target.value)}/>
             </div>
             <div className="flex p-b-16">
               <TextField 
                 className='w100 text-field-override'
                 required
                 label={t('createAccount.lastName')}
-                helperText={!lastNameForm.valid ? t('common.enterField', {field: t('createAccount.lastName')}) : ""}
+                helperText={!accountForm.lastName.valid ? t('common.enterField', {field: t('createAccount.lastName')}) : ""}
                 FormHelperTextProps={{ className: styles.marginHelper }}
-                error={!lastNameForm.valid}
+                error={!accountForm.lastName.valid}
                 variant="outlined"
-                value={lastNameForm.value}
-                onChange={e => setLastNameForm({value: e.target.value, valid: !!e.target.value})}/>
+                value={accountForm.lastName.value}
+                onChange={e => accountForm.lastName.setValue(e.target.value)}/>
             </div>
             <div className="flex p-b-16">
               <FormControl required className='w100 text-field-override' variant="outlined">
@@ -77,9 +58,9 @@ export default function CreateAccount() {
                   name="textmask"
                   id="birthDate-mask-input"
                   inputComponent={BirthDateMask as any}
-                  value={birthDateForm.value}
-                  onChange={e => setBirthDateForm({value: e.target.value, valid: !!e.target.value})}/>
-                  {!birthDateForm.valid && (
+                  value={accountForm.birthDate.value}
+                  onChange={e => accountForm.birthDate.setValue(e.target.value)}/>
+                  {!accountForm.birthDate.valid && (
                     <FormHelperText className={styles.marginHelper} error>
                       {t('common.enterField', {field: t('createAccount.birthDate')})}
                     </FormHelperText>
@@ -92,14 +73,14 @@ export default function CreateAccount() {
                 <RadioGroup
                   aria-labelledby="radio-buttons-group-gender"
                   name="radio-buttons-group-gender"
-                  value={genderForm.value}
-                  onChange={e => setGenderForm({value: e.target.value, valid: !!e.target.value})}
+                  value={accountForm.gender.value}
+                  onChange={e => accountForm.gender.setValue(e.target.value)}
                 >
                   <FormControlLabel required value="M" control={<Radio />} label={t('createAccount.male')} />
                   <FormControlLabel required value="F" control={<Radio />} label={t('createAccount.female')} />
                   <FormControlLabel required value="O" control={<Radio />} label={t('createAccount.other')} />
                 </RadioGroup>
-                {!genderForm.valid && (
+                {!accountForm.gender.valid && (
                   <FormHelperText className={styles.marginHelper} error>
                     {t('common.enterField', {field: t('createAccount.gender')})}
                   </FormHelperText>
@@ -108,19 +89,22 @@ export default function CreateAccount() {
             </div>
             <div className="flex p-b-16">
               <EmailTextField
-                onInputChange={(value: string) => {setEmailForm({value: value, valid: !!value})}}/>
+                showHelper={!accountForm.email.valid}
+                onInputChange={(value: string) => {accountForm.email.setValue(value)}}/>
             </div>
             <div className="flex p-b-16">
               <PasswordTextField
                 id='passwordCreate'
-                onInputChange={(value: string) => {setPasswordForm({value: value, valid: !!value})}}
+                showHelper={!accountForm.password.valid}
+                onInputChange={(value: string) => {accountForm.password.setValue(value)}}
                 helperMessage={t('common.enterField', {field: t('common.password')})} >
               </PasswordTextField>
             </div>
             <div className="flex p-b-16">
             <PasswordTextField
                 id='passwordConfirmationCreate'
-                onInputChange={(value: string) => {setPasswordConfirmationForm({value: value, valid: !!value})}}
+                showHelper={!accountForm.passwordConfirmation.valid}
+                onInputChange={(value: string) => {accountForm.passwordConfirmation.setValue(value)}}
                 helperMessage={t('common.enterField', {field: t('createAccount.confirmPassword')})}
                 label={t('createAccount.confirmPassword')} >
               </PasswordTextField>
@@ -133,11 +117,11 @@ export default function CreateAccount() {
                   label={t('createAccount.phoneNumber')}
                   name="textmask"
                   id="phone-mask-input"
-                  value={phoneForm.value}
-                  onChange={e => setPhoneForm({value: e.target.value, valid: !!e.target.value})}
+                  value={accountForm.phone.value}
+                  onChange={e => accountForm.phone.setValue(e.target.value)}
                   inputComponent={PhoneMask as any}
                 />
-                {!phoneForm.valid && (
+                {!accountForm.phone.valid && (
                   <FormHelperText className={styles.marginHelper} error>
                     {t('common.enterField', {field: t('createAccount.phoneNumber')})}
                   </FormHelperText>

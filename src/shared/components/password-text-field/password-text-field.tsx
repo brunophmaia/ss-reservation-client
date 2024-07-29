@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './PasswordTextFiled.module.scss';
 
-export default function PasswordTextField({ onInputChange, id, helperMessage, label }: any) {
+export default function PasswordTextField({ onInputChange, id, helperMessage, label, showHelper }: any) {
 
     const { t } = useTranslation();
 
@@ -22,13 +22,13 @@ export default function PasswordTextField({ onInputChange, id, helperMessage, la
 
     return (
         <FormControl required className='w100 text-field-override'>
-            <InputLabel htmlFor={id}>{t('common.password')}</InputLabel>
+            <InputLabel htmlFor={id}>{label ? label : t('common.password')}</InputLabel>
             <OutlinedInput
                 id={id}
                 type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={handleChange}
-                label={label ? label : t('login.password')}
+                label={label ? label : t('common.password')}
                 endAdornment={
                 <InputAdornment position="end">
                     <IconButton
@@ -42,7 +42,7 @@ export default function PasswordTextField({ onInputChange, id, helperMessage, la
                 </InputAdornment>
                 }
             />
-            {!password && (
+            {showHelper && (
                 <FormHelperText className={styles.marginHelper} error>
                 {helperMessage}
                 </FormHelperText>
