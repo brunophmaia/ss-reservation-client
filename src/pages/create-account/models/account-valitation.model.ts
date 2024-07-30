@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getBirthDateFromStr, getPhoneDigitsFromStr, isNotNullOrEmpty } from "../util/create-account.util";
 
 export class AccountForm {
 
@@ -72,11 +73,11 @@ class FormValidation {
 
     setValue(value: any){
         this._setValue(value);
-        this.setValid(!!value);
+        this.setValid(isNotNullOrEmpty(value));
     }
 
     validation(): boolean{
-        let valid = !!this.value;
+        let valid = isNotNullOrEmpty(this.value);
         this.setValid(valid);
         return valid;
     }
@@ -110,11 +111,9 @@ class BirthDateForm extends FormValidation {
     validation(): boolean {
         let valid = true;
 
-        if(this.value) {
-            const dateSplitted = (this.value as string).split('/');
-            const date = new Date(`${dateSplitted[2]}/${dateSplitted[1]}/${dateSplitted[0]}`);
+        if(isNotNullOrEmpty(this.value)) {
 
-            if(date.toString() == 'Invalid Date') {
+            if(getBirthDateFromStr(this.value).toString() == 'Invalid Date') {
                 this.setShowValidBirthDate(true);
                 valid = false;
             }
@@ -155,7 +154,7 @@ class PasswordForm extends FormValidation {
     validation(): boolean {
         let valid = true;
 
-        if(this.value) {
+        if(isNotNullOrEmpty(this.value)) {
             const regexPswd = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>_-])[A-Za-z\d!@#$%^&*(),.?":{}|<>_-]{8,}$/;
 
             if(!regexPswd.test(this.value)) {
@@ -203,11 +202,8 @@ class PhoneForm extends FormValidation {
     validation(): boolean {
         let valid = true;
 
-        if(this.value) {
-            const phoneDigits = (this.value as string).replaceAll('(','')
-                                                        .replaceAll(')','')
-                                                        .replaceAll('-','')
-                                                        .replaceAll(' ','');
+        if(isNotNullOrEmpty(this.value)) {
+            const phoneDigits = getPhoneDigitsFromStr(this.value);
             
             if((phoneDigits.length != 10 && phoneDigits.length != 11) || !(/^\d+$/.test(phoneDigits))) {
                 this.setShowValidPhone(true);

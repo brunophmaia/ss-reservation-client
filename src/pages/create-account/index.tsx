@@ -6,6 +6,8 @@ import PasswordTextField from "@/shared/components/password-text-field/password-
 import EmailTextField from "@/shared/components/email-text-field/email-text-field";
 import { BirthDateMask, PhoneMask } from "./util/create-account.util";
 import { AccountForm } from "./models/account-valitation.model";
+import { Account } from "./models/account.model";
+import { CreateAccountService } from "./service/create-account.service";
 
 export default function CreateAccount() {
 
@@ -18,7 +20,16 @@ export default function CreateAccount() {
     e.preventDefault();
     
     if(accountForm.validate(e.target.checkValidity())){
-      console.log('ok');
+      const account = new Account(accountForm.name.value,
+                                  accountForm.lastName.value,
+                                  accountForm.birthDate.value,
+                                  accountForm.gender.value,
+                                  accountForm.email.value,
+                                  accountForm.password.value,
+                                  accountForm.phone.value);
+      
+      let accountService = new CreateAccountService();
+      accountService.createAccount(account);
     }
   };
 
@@ -72,7 +83,7 @@ export default function CreateAccount() {
               </FormControl>
             </div>
             <div className="p-b-16">
-              <FormControl  className="text-field-override">
+              <FormControl required className="text-field-override">
                 <FormLabel id="radio-buttons-group-gender">{t('createAccount.gender')}</FormLabel>
                 <RadioGroup
                   aria-labelledby="radio-buttons-group-gender"
@@ -80,9 +91,9 @@ export default function CreateAccount() {
                   value={accountForm.gender.value}
                   onChange={e => accountForm.gender.setValue(e.target.value)}
                 >
-                  <FormControlLabel required value="M" control={<Radio />} label={t('createAccount.male')} />
-                  <FormControlLabel required value="F" control={<Radio />} label={t('createAccount.female')} />
-                  <FormControlLabel required value="O" control={<Radio />} label={t('createAccount.other')} />
+                  <FormControlLabel value="M" control={<Radio />} label={t('createAccount.male')} />
+                  <FormControlLabel value="F" control={<Radio />} label={t('createAccount.female')} />
+                  <FormControlLabel value="O" control={<Radio />} label={t('createAccount.other')} />
                 </RadioGroup>
                 {!accountForm.gender.valid && (
                   <FormHelperText className={styles.marginHelper} error>

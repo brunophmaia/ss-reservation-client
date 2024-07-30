@@ -6,6 +6,23 @@ interface CustomProps {
     name: string;
 }
 
+export const isNotNullOrEmpty = (value: string): boolean => {
+  return !!(value?.trim());
+}
+
+export const getBirthDateFromStr = (value: string): Date => {
+  const dateSplitted = value.split('/');
+  return new Date(`${dateSplitted[2]}/${dateSplitted[1]}/${dateSplitted[0]}`);
+}
+
+export const getPhoneDigitsFromStr = (value: string): string => {
+  const phoneDigits = value.replaceAll('(','')
+                           .replaceAll(')','')
+                           .replaceAll('-','')
+                           .replaceAll(' ','');
+  return phoneDigits;
+}
+
 export const PhoneMask = React.forwardRef<HTMLInputElement, CustomProps>(
   function PhoneMask(props, ref) {
     const { onChange, ...other } = props;
