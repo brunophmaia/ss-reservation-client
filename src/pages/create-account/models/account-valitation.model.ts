@@ -2,7 +2,12 @@ import { useState } from "react";
 
 export class AccountForm {
 
-    constructor(){}
+    showCheckFields;
+    setShowCheckFields;
+
+    constructor(){
+        [this.showCheckFields, this.setShowCheckFields] = useState<boolean>(false);
+    }
 
     name = new NameForm();
     lastName = new LastNameForm();
@@ -24,20 +29,31 @@ export class AccountForm {
         this.phone
     ];
 
-    validate(){
+    validate(formValid: boolean): boolean{
+        let valid: boolean = formValid;
 
+        //default validations
         this.fields.forEach(field => {
-            field.validation();
+            let fieldValid = field.validation();
+            valid = !fieldValid ? false : valid;
         });
 
-        this.chechMatchPassword();
+        //additional validations
+        let fieldValid = this.chechMatchPassword();
+        valid = !fieldValid ? false : valid;
+
+        this.setShowCheckFields(!valid);
+
+        return valid;
     }
 
     chechMatchPassword(){
         if(this.password.value && this.passwordConfirmation.value && this.password.value != this.passwordConfirmation.value) {
             this.passwordConfirmation.setMissmatch(true);
+            return false;
         } else {
             this.passwordConfirmation.setMissmatch(false);
+            return true;
         }
     }
 }
@@ -50,13 +66,8 @@ class FormValidation {
     setValid: any;
 
     constructor(){
-        const [value, setValue] = useState<any>('');
-        const [valid, _setValid] = useState<boolean>(true);
-
-        this.value = value;
-        this._setValue = setValue;
-        this.valid = valid;
-        this.setValid = _setValid;
+        [this.value, this._setValue] = useState<any>('');
+        [this.valid, this.setValid] = useState<boolean>(true);
     }
 
     setValue(value: any){
@@ -64,8 +75,9 @@ class FormValidation {
         this.setValid(!!value);
     }
 
-    validation(){
+    validation(): boolean{
         this.setValid(!!this.value);
+        return this.valid;
     }
 }
 
@@ -90,13 +102,13 @@ class BirthDateForm extends FormValidation {
 
     constructor() {
         super();
-        const [showValidBirthDate, setShowValidBirthDate] = useState<boolean>(false);
-        this.showValidBirthDate = showValidBirthDate;
-        this.setShowValidBirthDate = setShowValidBirthDate;
+        [this.showValidBirthDate, this.setShowValidBirthDate] = useState<boolean>(false);
     }
 
 
-    validation() {
+    validation(): boolean {
+        this.setValid(true);
+
         if(this.value) {
             const dateSplitted = (this.value as string).split('/');
             const date = new Date(`${dateSplitted[2]}/${dateSplitted[1]}/${dateSplitted[0]}`);
@@ -109,6 +121,8 @@ class BirthDateForm extends FormValidation {
         else {
             this.setValid(false);
         }
+
+        return this.valid;
     }
 }
 
@@ -128,8 +142,30 @@ class EmailForm extends FormValidation {
 
 class PasswordForm extends FormValidation {
     
+    showConditionPswd;
+    setShowConditionPswd;
+
     constructor() {
         super();
+        [this.showConditionPswd, this.setShowConditionPswd] = useState<boolean>(false);
+    }
+
+    validation(): boolean {
+        this.setValid(true);
+
+        if(this.value) {
+            const regexPswd = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>_-])[A-Za-z\d!@#$%^&*(),.?":{}|<>_-]{8,}$/;
+
+            if(!regexPswd.test(this.value)) {
+                this.setShowConditionPswd(true);
+                this.setValid(false);
+            }
+        }
+        else {
+            this.setValid(false);
+        }
+
+        return this.valid;
     }
 }
 
@@ -140,9 +176,7 @@ class PasswordConfirmationForm extends FormValidation {
 
     constructor() {
         super();
-        const [showMissmatch, setShowMissmatch] = useState<boolean>(false);
-        this.showMissmatch = showMissmatch;
-        this.setShowMissmatch = setShowMissmatch;
+        [this.showMissmatch, this.setShowMissmatch] = useState<boolean>(false);
     }
 
     setMissmatch(missMatch: boolean) {
@@ -160,12 +194,12 @@ class PhoneForm extends FormValidation {
 
     constructor() {
         super();
-        const [showValidPhone, setShowValidPhone] = useState<boolean>(false);
-        this.showValidPhone = showValidPhone;
-        this.setShowValidPhone = setShowValidPhone;
+        [this.showValidPhone, this.setShowValidPhone] = useState<boolean>(false);
     }
 
-    validation() {
+    validation(): boolean {
+        this.setValid(true);
+
         if(this.value) {
             const phoneDigits = (this.value as string).replaceAll('(','')
                                                         .replaceAll(')','')
@@ -180,5 +214,7 @@ class PhoneForm extends FormValidation {
         else {
             this.setValid(false);
         }
+
+        return this.valid;
     }
 }

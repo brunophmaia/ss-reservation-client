@@ -62,6 +62,16 @@ body {
   display: flex;
 }
 
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
 .h100 {
   height: 100%;
 }

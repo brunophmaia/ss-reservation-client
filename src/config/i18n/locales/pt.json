@@ -7,6 +7,7 @@
         },
         "createAccount": {
             "birthDate": "Data de Nascimento",
+            "checkFields": "Por favor verifique os campos.",
             "confirmPassword": "Confirmação de Senha",
             "createAccountTitle": "CRIAR CONTA",
             "female": "Feminino",
@@ -15,6 +16,7 @@
             "male": "Masculino",
             "name": "Nome",
             "other": "Outro",
+            "passwordCondition": "A senha deve ter tamanho mínimo de 8 caracteres, mínimo de 1 letra, mínimo de 1 dígito e mínimo de 1 caractere especial.",
             "passwordMissmatch": "As senhas não coincidem.",
             "phoneNumber": "Telefone",
             "validBirthDate": "Insira uma Data de Nascimento válida.",

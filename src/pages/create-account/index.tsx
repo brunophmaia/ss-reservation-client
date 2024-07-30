@@ -16,7 +16,10 @@ export default function CreateAccount() {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    accountForm.validate();
+    
+    if(accountForm.validate(e.target.checkValidity())){
+      console.log('ok');
+    }
   };
 
   return (
@@ -98,7 +101,8 @@ export default function CreateAccount() {
                 id='passwordCreate'
                 showHelper={!accountForm.password.valid}
                 onInputChange={(value: string) => {accountForm.password.setValue(value)}}
-                helperMessage={t('common.enterField', {field: t('common.password')})} >
+                helperMessage={accountForm.password.showConditionPswd ? t('createAccount.passwordCondition') :
+                                                                        t('common.enterField', {field: t('common.password')})} >
               </PasswordTextField>
             </div>
             <div className="flex p-b-16">
@@ -131,8 +135,15 @@ export default function CreateAccount() {
                 )}
               </FormControl>
             </div>
-            <div className="flex p-t-32 p-b-32">
-              <Button type="submit" className='w100' variant="contained">{t('createAccount.createAccountTitle')}</Button>
+            <div className="flexColumn p-t-32 p-b-32">
+              <div className="flex">
+                <Button type="submit" className='w100' variant="contained">{t('createAccount.createAccountTitle')}</Button>
+              </div>
+              {accountForm.showCheckFields && (
+                <FormHelperText className={styles.marginHelper} error>
+                  {t('createAccount.checkFields')}
+                </FormHelperText>
+              )}
             </div>
           </Box>
         </div>
