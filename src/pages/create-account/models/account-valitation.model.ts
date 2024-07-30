@@ -76,8 +76,9 @@ class FormValidation {
     }
 
     validation(): boolean{
-        this.setValid(!!this.value);
-        return this.valid;
+        let valid = !!this.value;
+        this.setValid(valid);
+        return valid;
     }
 }
 
@@ -107,7 +108,7 @@ class BirthDateForm extends FormValidation {
 
 
     validation(): boolean {
-        this.setValid(true);
+        let valid = true;
 
         if(this.value) {
             const dateSplitted = (this.value as string).split('/');
@@ -115,14 +116,15 @@ class BirthDateForm extends FormValidation {
 
             if(date.toString() == 'Invalid Date') {
                 this.setShowValidBirthDate(true);
-                this.setValid(false);
+                valid = false;
             }
         }
         else {
-            this.setValid(false);
+            valid = false;
         }
 
-        return this.valid;
+        this.setValid(valid);
+        return valid;
     }
 }
 
@@ -151,21 +153,22 @@ class PasswordForm extends FormValidation {
     }
 
     validation(): boolean {
-        this.setValid(true);
+        let valid = true;
 
         if(this.value) {
             const regexPswd = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>_-])[A-Za-z\d!@#$%^&*(),.?":{}|<>_-]{8,}$/;
 
             if(!regexPswd.test(this.value)) {
                 this.setShowConditionPswd(true);
-                this.setValid(false);
+                valid = false;
             }
         }
         else {
-            this.setValid(false);
+            valid = false;
         }
 
-        return this.valid;
+        this.setValid(valid);
+        return valid;
     }
 }
 
@@ -198,7 +201,7 @@ class PhoneForm extends FormValidation {
     }
 
     validation(): boolean {
-        this.setValid(true);
+        let valid = true;
 
         if(this.value) {
             const phoneDigits = (this.value as string).replaceAll('(','')
@@ -208,13 +211,14 @@ class PhoneForm extends FormValidation {
             
             if((phoneDigits.length != 10 && phoneDigits.length != 11) || !(/^\d+$/.test(phoneDigits))) {
                 this.setShowValidPhone(true);
-                this.setValid(false);
+                valid = false;
             }
         }
         else {
-            this.setValid(false);
+            valid = false;
         }
 
-        return this.valid;
+        this.setValid(valid)
+        return valid;
     }
 }
