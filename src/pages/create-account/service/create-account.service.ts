@@ -10,4 +10,7 @@ export class CreateAccountService extends HttpService {
         this.post(this.path, account);
     }
 
+    sendEmailCode(email: string) {
+        this.post(`${this.path}/sendEmailCode`, null, { email });
+    }
 }

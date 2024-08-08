@@ -8,6 +8,9 @@ import { BirthDateMask, PhoneMask } from "./util/create-account.util";
 import { AccountForm } from "./models/account-valitation.model";
 import { Account } from "./models/account.model";
 import { CreateAccountService } from "./service/create-account.service";
+import EmailCodeConfirmation from "@/shared/components/email-code-confirmation/email-code-confirmation";
+import ActionDialog from "@/shared/components/action-dialog/action-dialog";
+import { ConfirmationCodeModel } from "./models/confirmation-code.model";
 
 export default function CreateAccount() {
 
@@ -15,22 +18,30 @@ export default function CreateAccount() {
   const { t } = useTranslation();
 
   let accountForm = new AccountForm();
+  let confirmationCodeModel = new ConfirmationCodeModel();
+  let accountService = new CreateAccountService();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    
+
     if(accountForm.validate(e.target.checkValidity())){
-      const account = new Account(accountForm.name.value,
+      confirmationCodeModel.setShowDialogEmailConfirmation(true);
+      accountService.sendEmailCode(accountForm.email.value);
+    }
+  };
+
+  const onConfirmCode = () => {
+    const account = new Account(new Date().getTime().toString(),
                                   accountForm.lastName.value,
                                   accountForm.birthDate.value,
                                   accountForm.gender.value,
                                   accountForm.email.value,
                                   accountForm.password.value,
-                                  accountForm.phone.value);
-      
-      let accountService = new CreateAccountService();
-      accountService.createAccount(account);
-    }
+                                  accountForm.phone.value,
+                                  confirmationCodeModel.emailCode);
+
+    accountService.createAccount(account);
+    confirmationCodeModel.hideDialog();
   };
 
   return (
@@ -159,6 +170,17 @@ export default function CreateAccount() {
           </Box>
         </div>
       </div>
+      <ActionDialog
+        open={confirmationCodeModel.showDialogEmailConfirmation}
+        title={t('common.confirmationCode')}
+        onClose={() => {confirmationCodeModel.setShowDialogEmailConfirmation(false)}}
+        confirmEnabled={confirmationCodeModel.emailConfirmationEnabled}
+        onConfirm={onConfirmCode} >
+        <EmailCodeConfirmation
+          email={accountForm.email.value}
+          onInputCode={(value: string) => confirmationCodeModel.setCodeValue(value)} >
+        </EmailCodeConfirmation>
+      </ActionDialog>
     </div>
   );
 };

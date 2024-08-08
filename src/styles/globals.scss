@@ -3,10 +3,6 @@ body.light-theme {
   --text-color: #000000;
   --primary-color: #0070f3;
   --secondary-color: #ff4081;
-
-  .test{
-    background-color: gray;
-  }
 }
 
 body.dark-theme {
@@ -14,6 +10,17 @@ body.dark-theme {
   --text-color: #e0e0e0;
   --primary-color: #1e90ff;
   --secondary-color: #ff79c6;
+
+  .pop-up-bkg {
+    .MuiPaper-root {
+      background-color: rgb(19, 19, 19);
+      color: #e0e0e0;
+    }
+  }
+
+  .MuiButton-root.Mui-disabled {
+    background-color: rgba(147, 147, 147, 0.8);
+  }
 
   .text-field-override {
 

@@ -8,7 +8,8 @@ export class Account {
                  gender: string,
                  email: string,
                  password: string,
-                 phone: string
+                 phone: string,
+                 emailCode: string
     ) {
         this.name = name.trim();
         this.lastName = lastName.trim();
@@ -17,6 +18,7 @@ export class Account {
         this.email = email.trim();
         this.password = password.trim();
         this.phone = getPhoneDigitsFromStr(phone);
+        this.emailCode = emailCode.trim();
     }
 
     name!: string;
@@ -26,4 +28,5 @@ export class Account {
     email!: string;
     password!: string;
     phone!: string;
+    emailCode!: string;
 }

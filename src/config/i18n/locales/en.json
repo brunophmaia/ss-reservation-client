@@ -1,9 +1,14 @@
 {
     "translation": {
         "common": {
+            "cancel": "Cancel",
+            "code": "Code",
+            "confirm": "Confirm",
+            "confirmationCode": "Confirmation Code",
             "email": "Email",
             "enterField": "Enter the field {{field}}.",
-            "password": "Password"
+            "password": "Password",
+            "sentCodeEmail": "An email was sent to '{{email}}' with the confirmation code. Please enter the code in the field."
         },
         "createAccount": {
             "birthDate": "Birth Date",
