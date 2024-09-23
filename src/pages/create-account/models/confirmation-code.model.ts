@@ -23,6 +23,6 @@ export class ConfirmationCodeModel {
 
     hideDialog(){
         this.setShowDialogEmailConfirmation(false);
-        this.setEmailCode('');
+        this.setCodeValue('');
     }
 }

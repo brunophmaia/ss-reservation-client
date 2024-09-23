@@ -11,11 +11,15 @@ import { CreateAccountService } from "./service/create-account.service";
 import EmailCodeConfirmation from "@/shared/components/email-code-confirmation/email-code-confirmation";
 import ActionDialog from "@/shared/components/action-dialog/action-dialog";
 import { ConfirmationCodeModel } from "./models/confirmation-code.model";
+import { useState } from "react";
+import LoadingButton from "@/shared/components/loading-button/loading-button";
 
 export default function CreateAccount() {
 
   const { isMobile } = useDevice();
   const { t } = useTranslation();
+  const [showLoading, setShowLoading] = useState<boolean>(false);
+  const [showLoadingCode, setShowLoadingCode] = useState<boolean>(false);
 
   let accountForm = new AccountForm();
   let confirmationCodeModel = new ConfirmationCodeModel();
@@ -25,23 +29,35 @@ export default function CreateAccount() {
     e.preventDefault();
 
     if(accountForm.validate(e.target.checkValidity())){
-      confirmationCodeModel.setShowDialogEmailConfirmation(true);
-      accountService.sendEmailCode(accountForm.email.value);
+
+      setShowLoading(true);
+
+      accountService.sendEmailCode(accountForm.email.value).then(() => {
+        confirmationCodeModel.setShowDialogEmailConfirmation(true);
+      }).finally(() => {
+        setShowLoading(false);
+      });
     }
   };
 
   const onConfirmCode = () => {
-    const account = new Account(new Date().getTime().toString(),
-                                  accountForm.lastName.value,
-                                  accountForm.birthDate.value,
-                                  accountForm.gender.value,
-                                  accountForm.email.value,
-                                  accountForm.password.value,
-                                  accountForm.phone.value,
-                                  confirmationCodeModel.emailCode);
+    setShowLoadingCode(true);
+    const account = new Account(accountForm.name.value,
+                                accountForm.lastName.value,
+                                accountForm.birthDate.value,
+                                accountForm.gender.value,
+                                accountForm.email.value,
+                                accountForm.password.value,
+                                accountForm.phone.value,
+                                confirmationCodeModel.emailCode);
 
-    accountService.createAccount(account);
-    confirmationCodeModel.hideDialog();
+    accountService.createAccount(account)
+      .then(() => {
+        confirmationCodeModel.hideDialog();
+      })
+      .finally(() => {
+        setShowLoadingCode(false);
+      });
   };
 
   return (
@@ -158,9 +174,11 @@ export default function CreateAccount() {
               </FormControl>
             </div>
             <div className="flexColumn p-t-32 p-b-32">
-              <div className="flex">
-                <Button type="submit" className='w100' variant="contained">{t('createAccount.createAccountTitle')}</Button>
-              </div>
+              <LoadingButton
+                onClick={handleSubmit}
+                text={t('createAccount.createAccountTitle')}
+                showLoading={showLoading}>
+              </LoadingButton>
               {accountForm.showCheckFields && (
                 <FormHelperText className={styles.marginHelper} error>
                   {t('createAccount.checkFields')}
@@ -175,7 +193,8 @@ export default function CreateAccount() {
         title={t('common.confirmationCode')}
         onClose={() => {confirmationCodeModel.setShowDialogEmailConfirmation(false)}}
         confirmEnabled={confirmationCodeModel.emailConfirmationEnabled}
-        onConfirm={onConfirmCode} >
+        onConfirm={onConfirmCode}
+        showLoading={showLoadingCode} >
         <EmailCodeConfirmation
           email={accountForm.email.value}
           onInputCode={(value: string) => confirmationCodeModel.setCodeValue(value)} >

@@ -13,6 +13,7 @@
         "createAccount": {
             "birthDate": "Data de Nascimento",
             "checkFields": "Por favor verifique os campos.",
+            "codeGenerationError": "Erro na geração do código.",
             "confirmPassword": "Confirmação de Senha",
             "createAccountTitle": "CRIAR CONTA",
             "female": "Feminino",

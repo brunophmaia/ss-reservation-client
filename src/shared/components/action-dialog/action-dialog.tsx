@@ -1,7 +1,8 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle  } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import LoadingButton from '../loading-button/loading-button';
 
-export default function ActionDialog({ open, onClose, title, children, onConfirm, confirmEnabled }: any) {
+export default function ActionDialog({ open, onClose, title, children, onConfirm, confirmEnabled, showLoading }: any) {
 
     const { t } = useTranslation();
 
@@ -15,9 +16,12 @@ export default function ActionDialog({ open, onClose, title, children, onConfirm
             <Button variant="contained" onClick={onClose}>
               {t('common.cancel')}
             </Button>
-            <Button disabled={!confirmEnabled} variant="contained" onClick={onConfirm}>
-            {t('common.confirm')}
-            </Button>
+            <LoadingButton
+              onClick={onConfirm}
+              text={t('common.confirm')}
+              disabled={!confirmEnabled}
+              showLoading={showLoading}>
+            </LoadingButton>
           </DialogActions>
         </Dialog>
     );
