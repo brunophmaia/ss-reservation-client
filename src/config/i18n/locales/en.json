@@ -1,6 +1,7 @@
 {
     "translation": {
         "common": {
+            "anErrorOccurred": "An error occurred!",
             "cancel": "Cancel",
             "code": "Code",
             "confirm": "Confirm",
@@ -13,7 +14,7 @@
         "createAccount": {
             "birthDate": "Birth Date",
             "checkFields": "Please verify the fields.",
-            "codeGenerationError": "Error in code generation.",
+            "codeGenerationError": "Error in code generation!",
             "confirmPassword": "Password Confirmation",
             "createAccountTitle": "CREATE ACCOUNT",
             "female": "Female",

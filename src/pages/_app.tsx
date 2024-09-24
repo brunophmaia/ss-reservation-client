@@ -4,6 +4,7 @@ import { ThemeProvider } from '../context/theme-context';
 import '../config/i18n/i18n';
 import { DeviceProvider } from "@/context/device-context";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { SnackbarProvider } from "@/context/snackbar-context";
 
 export default function App({ Component, pageProps }: AppProps) {
 
@@ -13,7 +14,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <ThemeProvider>
       <DeviceProvider>
         <GoogleOAuthProvider clientId={googleCliendId}>
-          <Component {...pageProps} />
+          <SnackbarProvider>
+            <Component {...pageProps} />
+          </SnackbarProvider>
         </GoogleOAuthProvider>
       </DeviceProvider>
     </ThemeProvider>

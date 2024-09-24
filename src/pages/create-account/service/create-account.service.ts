@@ -1,5 +1,5 @@
 import { Account } from "../models/account.model";
-import { HttpService } from "@/shared/services/HttpService";
+import { HttpService } from "@/shared/services/axios-http/HttpService";
 
 export class CreateAccountService extends HttpService {
 
