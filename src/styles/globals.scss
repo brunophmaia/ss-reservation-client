@@ -124,3 +124,14 @@ body {
     margin-bottom: #{$i}px;
   }
 }
+
+//this is to hide the nextjs error overlay
+body {
+  padding-right: unset !important;
+  overflow: auto !important;
+}
+
+nextjs-portal {
+  display: none;
+}
+//this is to hide the nextjs error overlay
