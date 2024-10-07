@@ -13,6 +13,8 @@ import ActionDialog from "@/shared/components/action-dialog/action-dialog";
 import { ConfirmationCodeModel } from "./models/confirmation-code.model";
 import { useState } from "react";
 import LoadingButton from "@/shared/components/loading-button/loading-button";
+import { getSnackbar } from "@/context/snackbar-context";
+import { useRouter } from "next/router";
 
 export default function CreateAccount() {
 
@@ -20,6 +22,8 @@ export default function CreateAccount() {
   const { t } = useTranslation();
   const [showLoading, setShowLoading] = useState<boolean>(false);
   const [showLoadingCode, setShowLoadingCode] = useState<boolean>(false);
+  const { openSnackbar } = getSnackbar();
+  const router = useRouter();
 
   let accountForm = new AccountForm();
   let confirmationCodeModel = new ConfirmationCodeModel();
@@ -54,6 +58,8 @@ export default function CreateAccount() {
     accountService.createAccount(account)
       .then(() => {
         confirmationCodeModel.hideDialog();
+        router.push('/login')
+        openSnackbar(t('createAccount.creatingSuccess'), 'success');
       })
       .finally(() => {
         setShowLoadingCode(false);
