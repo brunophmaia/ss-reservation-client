@@ -46,7 +46,7 @@ export default function Login() {
             <GoogleLogin onSuccess={responseMessage} onError={errorMessage as any} />
           </div>
           {isMobile && <div className='p-t-32 p-b-32 horizontalCenter'>{t('login.or')}</div>}
-          <EmailLogin/>
+          <EmailLogin loginType={query.t}/>
         </div>
       </div>
     </div>

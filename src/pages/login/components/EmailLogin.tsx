@@ -2,12 +2,12 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDevice } from '@/context/device-context';
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import styles from './EmailLogin.module.scss';
 import PasswordTextField from '@/shared/components/password-text-field/password-text-field';
 import EmailTextField from '@/shared/components/email-text-field/email-text-field';
 
-export default function EmailLogin(){
+export default function EmailLogin({loginType}: any){
 
     const router = useRouter();
     const { isMobile } = useDevice();
@@ -42,7 +42,7 @@ export default function EmailLogin(){
               </div>}
             </div>
           </Box>
-          <div className='p-t-32'><a className={styles.createAnc} onClick={() => router.push('/create-account')}>{t('login.createAccount')}</a></div>
+          <div className='p-t-32'><a className={styles.createAnc} onClick={() => router.push(`/create-account?t=${loginType}`)}>{t('login.createAccount')}</a></div>
         </div>
       </div>
     );

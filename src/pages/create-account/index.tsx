@@ -24,6 +24,7 @@ export default function CreateAccount() {
   const [showLoadingCode, setShowLoadingCode] = useState<boolean>(false);
   const { openSnackbar } = getSnackbar();
   const router = useRouter();
+  const { query } = router;
 
   let accountForm = new AccountForm();
   let confirmationCodeModel = new ConfirmationCodeModel();
@@ -58,7 +59,7 @@ export default function CreateAccount() {
     accountService.createAccount(account)
       .then(() => {
         confirmationCodeModel.hideDialog();
-        router.push('/login')
+        router.push(`/login?t=${query.t}`)
         openSnackbar(t('createAccount.creatingSuccess'), 'success');
       })
       .finally(() => {
