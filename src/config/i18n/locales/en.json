@@ -40,7 +40,9 @@
         "login": {
             "createAccount": "Don't have an account? Click here to create one.",
             "inputEmailPswd": "Please enter the credentials.",
+            "invalidCredentials": "Invalid credentials!",
             "login": "LOGIN",
+            "loginSuccess": "Login successfully",
             "loginWithEmail": "Login with email and password:",
             "or": "OR",
             "validEmail": "Please enter a valid email."

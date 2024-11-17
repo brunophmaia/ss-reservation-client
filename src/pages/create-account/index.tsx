@@ -181,16 +181,20 @@ export default function CreateAccount() {
               </FormControl>
             </div>
             <div className="flexColumn p-t-32 p-b-32">
-              <LoadingButton
-                onClick={handleSubmit}
-                text={t('createAccount.createAccountTitle')}
-                showLoading={showLoading}>
-              </LoadingButton>
-              {accountForm.showCheckFields && (
-                <FormHelperText className={styles.marginHelper} error>
-                  {t('createAccount.checkFields')}
-                </FormHelperText>
-              )}
+              <div className="flex">
+                <LoadingButton
+                  onClick={handleSubmit}
+                  text={t('createAccount.createAccountTitle')}
+                  showLoading={showLoading}>
+                </LoadingButton>
+              </div>
+              <div>
+                {accountForm.showCheckFields && (
+                  <FormHelperText className={styles.marginHelper} error>
+                    {t('createAccount.checkFields')}
+                  </FormHelperText>
+                )}
+              </div>
             </div>
           </Box>
         </div>
