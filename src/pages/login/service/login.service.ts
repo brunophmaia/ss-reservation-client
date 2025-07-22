@@ -8,4 +8,8 @@ export class LoginService extends HttpService {
     login(login: Login): Promise<any> {
         return this.post(this.path, login);
     }
+
+    logout(): Promise<any> {
+        return this.post(`${this.path}/logout`);
+    }
 }

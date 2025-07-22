@@ -44,6 +44,7 @@
             "login": "LOGIN",
             "loginSuccess": "Login successfully",
             "loginWithEmail": "Login with email and password:",
+            "logout": "LOGOUT",
             "or": "OR",
             "validEmail": "Please enter a valid email."
         }

@@ -7,11 +7,12 @@ const createAxiosInstance = (): AxiosInstance => {
   const { t } = useTranslation();
 
   const instance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
+    withCredentials: true
   });
 
   instance.interceptors.response.use(
-    response => response,
+    response => response.data,
     error => {
       const { openSnackbar } = getSnackbar();
       openSnackbar(t(error.response?.data?.message || 'common.anErrorOccurred'), 'error');

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDevice } from '@/context/device-context';
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import styles from './EmailLogin.module.scss';
 import PasswordTextField from '@/shared/components/password-text-field/password-text-field';
 import EmailTextField from '@/shared/components/email-text-field/email-text-field';
@@ -13,7 +13,7 @@ import LoadingButton from '@/shared/components/loading-button/loading-button';
 
 export default function EmailLogin({loginType}: any){
 
-  const { openSnackbar } = getSnackbar();
+    const { openSnackbar } = getSnackbar();
     const router = useRouter();
     const { isMobile } = useDevice();
     const { t } = useTranslation();
@@ -40,10 +40,11 @@ export default function EmailLogin({loginType}: any){
 
       loginService.login(new Login(username, password)).then(() => {
         openSnackbar(t('login.loginSuccess'), 'success');
+        router.push('home');
       })
       .finally(() => {
         setShowLoading(false);
-      });;
+      });
 
     };
   

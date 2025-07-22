@@ -44,6 +44,7 @@
             "login": "ENTRAR",
             "loginSuccess": "Login efetuado com sucesso",
             "loginWithEmail": "Entrar com e-mail e senha:",
+            "logout": "SAIR",
             "or": "OU",
             "validEmail": "Por favor insira um e-mail válido."
         }
