@@ -9,6 +9,7 @@ export const ThemeProvider = ({ children }: any) => {
 
   useEffect(() => {
     document.body.className = theme + '-theme';
+    document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
   return (

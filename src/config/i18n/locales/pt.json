@@ -12,6 +12,12 @@
             "sentCodeEmail": "Um e-mail foi enviado para '{{email}}' com o código de confirmação. Por favor insira o código no campo abaixo."
         },
         "createAccount": {
+            "accountType": {
+                "owner": "Proprietário(a)",
+                "player": "Jogador(a)",
+                "staff": "Funcionário(a)"
+            },
+            "accountTypeLabel": "Tipo de Conta",
             "birthDate": "Data de Nascimento",
             "checkFields": "Por favor verifique os campos.",
             "codeGenerationError": "Erro na geração do código!",

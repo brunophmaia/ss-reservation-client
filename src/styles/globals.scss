@@ -3,6 +3,11 @@ body.light-theme {
   --text-color: #000000;
   --primary-color: #0070f3;
   --secondary-color: #ff4081;
+
+  --select-menu-bg: #fdfdfd;
+  --select-menu-hover: #d4d4d4;
+  --select-menu-selected: #d1d1d1;
+  --select-menu-selected-hover: #dad6d6;
 }
 
 body.dark-theme {
@@ -10,6 +15,11 @@ body.dark-theme {
   --text-color: #e0e0e0;
   --primary-color: #1e90ff;
   --secondary-color: #ff79c6;
+
+  --select-menu-bg: #333;
+  --select-menu-hover: #555;
+  --select-menu-selected: #666;
+  --select-menu-selected-hover: #777;
 
   .pop-up-bkg {
     .MuiPaper-root {

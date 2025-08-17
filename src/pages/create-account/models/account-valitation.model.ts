@@ -15,6 +15,7 @@ export class AccountForm {
     birthDate = new BirthDateForm();
     email = new EmailForm();
     gender = new GenderForm();
+    accountType = new AccountTypeForm();
     password = new PasswordForm();
     passwordConfirmation = new PasswordConfirmationForm();
     phone = new PhoneForm();
@@ -128,6 +129,13 @@ class BirthDateForm extends FormValidation {
 }
 
 class GenderForm extends FormValidation {
+    
+    constructor() {
+        super();
+    }
+}
+
+class AccountTypeForm extends FormValidation {
     
     constructor() {
         super();

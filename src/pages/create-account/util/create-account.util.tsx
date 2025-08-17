@@ -6,8 +6,8 @@ interface CustomProps {
     name: string;
 }
 
-export const isNotNullOrEmpty = (value: string): boolean => {
-  return !!(value?.trim());
+export const isNotNullOrEmpty = (value: any): boolean => {
+  return !!(value);
 }
 
 export const getBirthDateFromStr = (value: string): Date => {

@@ -1,0 +1,7 @@
+.customPaper {
+
+    [data-theme='dark'] & {
+        background-color: rgb(19, 19, 19);
+        color: var(--text-color);
+    }
+}

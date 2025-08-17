@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, FormControlLabel, FormHelperText, FormLabel, InputLabel, OutlinedInput, Radio, RadioGroup, TextField, Typography } from "@mui/material";
+import { Box, Button, FormControl, FormControlLabel, FormHelperText, FormLabel, InputLabel, MenuItem, OutlinedInput, Radio, RadioGroup, Select, TextField, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useDevice } from "@/context/device-context";
 import styles from './CreateAccount.module.scss';
@@ -11,17 +11,21 @@ import { CreateAccountService } from "./service/create-account.service";
 import EmailCodeConfirmation from "@/shared/components/email-code-confirmation/email-code-confirmation";
 import ActionDialog from "@/shared/components/action-dialog/action-dialog";
 import { ConfirmationCodeModel } from "./models/confirmation-code.model";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LoadingButton from "@/shared/components/loading-button/loading-button";
 import { getSnackbar } from "@/context/snackbar-context";
 import { useRouter } from "next/router";
+import { AccountTypeService } from "./service/account-type.service";
+import { AccountType } from "./models/account-type.model";
 
 export default function CreateAccount() {
 
+  const accountTypeService = new AccountTypeService();
   const { isMobile } = useDevice();
   const { t } = useTranslation();
   const [showLoading, setShowLoading] = useState<boolean>(false);
   const [showLoadingCode, setShowLoadingCode] = useState<boolean>(false);
+  const [accountTypes, setAccountTypes] = useState<Array<AccountType>>([]);
   const { openSnackbar } = getSnackbar();
   const router = useRouter();
   const { query } = router;
@@ -51,6 +55,7 @@ export default function CreateAccount() {
                                 accountForm.lastName.value,
                                 accountForm.birthDate.value,
                                 accountForm.gender.value,
+                                accountForm.accountType.value,
                                 accountForm.email.value,
                                 accountForm.password.value,
                                 accountForm.phone.value,
@@ -66,6 +71,12 @@ export default function CreateAccount() {
         setShowLoadingCode(false);
       });
   };
+
+  useEffect(() => {
+      accountTypeService.getAll().then((accountTypes: Array<AccountType>) => {
+          setAccountTypes(accountTypes);
+      });
+  }, []);
 
   return (
     <div className='flex'>
@@ -133,6 +144,45 @@ export default function CreateAccount() {
                   <FormHelperText className={styles.marginHelper} error>
                     {t('common.enterField', {field: t('createAccount.gender')})}
                   </FormHelperText>
+                )}
+              </FormControl>
+            </div>
+            <div className="p-b-16">
+              <FormControl fullWidth required className="text-field-override">
+                <InputLabel id="account-type-id">{t('createAccount.accountTypeLabel')}</InputLabel>
+                <Select
+                  id="account-type-id"
+                  value={accountForm.accountType.value}
+                  label={t('createAccount.accountTypeLabel')}
+                  onChange={e => accountForm.accountType.setValue(e.target.value)}
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        bgcolor: 'var(--select-menu-bg)',
+                        color: 'var(--text-color)', 
+                        '& .MuiMenuItem-root': {
+                          '&:hover': {
+                            backgroundColor: 'var(--select-menu-hover)', 
+                          },
+                          '&.Mui-selected': {
+                            backgroundColor: 'var(--select-menu-selected)', 
+                            '&:hover': {
+                              backgroundColor: 'var(--select-menu-selected-hover)',
+                            },
+                          },
+                        },
+                      },
+                    },
+                  }}
+                >
+                  {accountTypes.map((accountType: AccountType) => (
+                    <MenuItem key={accountType.key} value={accountType.id}>{t(accountType.description)}</MenuItem>
+                  ))}
+                </Select>
+                {!accountForm.accountType.valid && (
+                    <FormHelperText className={styles.marginHelper} error>
+                      {t('common.enterField', {field: t('createAccount.gender')})}
+                    </FormHelperText>
                 )}
               </FormControl>
             </div>
