@@ -1,0 +1,147 @@
+body.light-theme {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --primary-color: #0070f3;
+  --secondary-color: #ff4081;
+
+  --select-menu-bg: #fdfdfd;
+  --select-menu-hover: #d4d4d4;
+  --select-menu-selected: #d1d1d1;
+  --select-menu-selected-hover: #dad6d6;
+}
+
+body.dark-theme {
+  --background-color: #000000;
+  --text-color: #e0e0e0;
+  --primary-color: #1e90ff;
+  --secondary-color: #ff79c6;
+
+  --select-menu-bg: #333;
+  --select-menu-hover: #555;
+  --select-menu-selected: #666;
+  --select-menu-selected-hover: #777;
+
+  .pop-up-bkg {
+    .MuiPaper-root {
+      background-color: rgb(19, 19, 19);
+      color: #e0e0e0;
+    }
+  }
+
+  .MuiButton-root.Mui-disabled {
+    background-color: rgba(147, 147, 147, 0.8);
+  }
+
+  .text-field-override {
+
+    .MuiInputBase-root {
+      color: var(--text-color);
+    }
+    .MuiInputLabel-root {
+      color: var(--text-color);
+    }
+    .MuiSvgIcon-root {
+      color: var(--text-color);
+    }
+    .MuiOutlinedInput-notchedOutline {
+      border-color: rgba(255, 255, 255, 0.42); /* Borda cinza */
+    }
+    .MuiFormLabel-root {
+      color: var(--text-color);
+    }
+  }
+}
+
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+.horizontalCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.verticalCenter {
+  display: flex;
+  align-items: center;
+}
+
+.flex{
+  display: flex;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.h100 {
+  height: 100%;
+}
+
+.w100 {
+  width: 100vw;
+}
+
+#__next {
+  height: 100%;
+}
+
+@for $i from 1 through 100 {
+  .p-l-#{$i} {
+    padding-left: #{$i}px;
+  }
+
+  .p-r-#{$i} {
+    padding-right: #{$i}px;
+  }
+
+  .p-t-#{$i} {
+    padding-top: #{$i}px;
+  }
+
+  .p-b-#{$i} {
+    padding-bottom: #{$i}px;
+  }
+
+  .m-l-#{$i} {
+    margin-left: #{$i}px;
+  }
+
+  .m-r-#{$i} {
+    margin-right: #{$i}px;
+  }
+
+  .m-t-#{$i} {
+    margin-top: #{$i}px;
+  }
+
+  .m-b-#{$i} {
+    margin-bottom: #{$i}px;
+  }
+}
+
+//this is to hide the nextjs error overlay
+body {
+  padding-right: unset !important;
+  overflow: auto !important;
+}
+
+nextjs-portal {
+  display: none;
+}
+//this is to hide the nextjs error overlay

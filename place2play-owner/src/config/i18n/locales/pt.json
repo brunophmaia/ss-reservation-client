@@ -1,0 +1,14 @@
+{
+    "translation": {
+        "common": {
+            "anErrorOccurred": "Aconteceu um erro!"
+        },
+        "login": {
+            "logout": "SAIR"
+        },
+        "sportsComplex": {
+            "checkFields": "Por favor verifique os campos.",
+            "nameInUse": "Você já tem um complexo esportivo com esse nome."
+        }
+    }
+}

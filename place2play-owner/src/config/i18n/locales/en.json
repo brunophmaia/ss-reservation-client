@@ -1,0 +1,14 @@
+{
+    "translation": {
+        "common": {
+            "anErrorOccurred": "An error occurred!"
+        },
+        "login": {
+            "logout": "LOGOUT"
+        },
+        "sportsComplex": {
+            "checkFields": "Please verify the fields.",
+            "nameInUse": "You already have a sports complex with this name."
+        }
+    }
+}

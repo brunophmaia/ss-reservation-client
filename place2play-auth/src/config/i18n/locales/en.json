@@ -1,0 +1,56 @@
+{
+    "translation": {
+        "common": {
+            "anErrorOccurred": "An error occurred!",
+            "cancel": "Cancel",
+            "code": "Code",
+            "confirm": "Confirm",
+            "confirmationCode": "Confirmation Code",
+            "email": "Email",
+            "enterField": "Enter the field {{field}}.",
+            "password": "Password",
+            "sentCodeEmail": "An email was sent to '{{email}}' with the confirmation code. Please enter the code in the field."
+        },
+        "createAccount": {
+            "accountType": {
+                "owner": "Owner",
+                "player": "Player",
+                "staff": "Staff"
+            },
+            "accountTypeLabel": "Account Type",
+            "birthDate": "Birth Date",
+            "checkFields": "Please verify the fields.",
+            "codeGenerationError": "Error in code generation!",
+            "confirmPassword": "Password Confirmation",
+            "createAccountTitle": "CREATE ACCOUNT",
+            "creatingSuccess": "Account created successfully.",
+            "emailInUse": "Email in use by another account.",
+            "female": "Female",
+            "gender": "Gender",
+            "invalidCode": "Invalid code!",
+            "lastName": "Last Name",
+            "male": "Male",
+            "name": "Name",
+            "other": "Other",
+            "passwordCondition": "The password must have minimum size of 8 characteres, at least 1 letter, at least 1 digit and at least 1 special character.",
+            "passwordMissmatch": "The Passwords do not match.",
+            "phoneNumber": "Phone Number",
+            "validBirthDate": "Enter a valid Birth Date.",
+            "validPhone": "Enter a valid Phone."
+        },
+        "home": {
+            "redirecting": "Redirecting",
+            "welcomeApp": "Welcome to {{appName}}"
+        },
+        "login": {
+            "createAccount": "Don't have an account? Click here to create one.",
+            "inputEmailPswd": "Please enter the credentials.",
+            "invalidCredentials": "Invalid credentials!",
+            "login": "LOGIN",
+            "loginSuccess": "Login successfully",
+            "loginWithEmail": "Login with email and password:",
+            "or": "OR",
+            "validEmail": "Please enter a valid email."
+        }
+    }
+}
