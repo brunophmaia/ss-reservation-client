@@ -3,10 +3,10 @@ import { Login } from "../models/Login.model";
 
 export class LoginService extends HttpService {
 
-    path: string = 'login';
+    path: string = 'auth';
 
     login(login: Login): Promise<any> {
-        return this.post(this.path, login);
+        return this.post(`${this.path}/login`, login);
     }
 
     logout(): Promise<any> {
