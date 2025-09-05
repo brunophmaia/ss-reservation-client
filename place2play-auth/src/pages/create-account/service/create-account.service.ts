@@ -6,7 +6,7 @@ export class CreateAccountService extends HttpService {
     path: string = 'account';
 
     createAccount(account: Account): Promise<any> {
-        return this.post(this.path, account);
+        return this.post(`${this.path}/create`, account);
     }
 
     sendEmailCode(email: string): Promise<any> {
