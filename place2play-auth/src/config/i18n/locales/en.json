@@ -44,12 +44,15 @@
         },
         "login": {
             "createAccount": "Don't have an account? Click here to create one.",
+            "fillLoginType": "Please select if you want to login as player or as owner.",
             "inputEmailPswd": "Please enter the credentials.",
             "invalidCredentials": "Invalid credentials!",
             "login": "LOGIN",
             "loginSuccess": "Login successfully",
             "loginWithEmail": "Login with email and password:",
             "or": "OR",
+            "owner": "OWNER",
+            "player": "JOGADOR(A)",
             "validEmail": "Please enter a valid email."
         }
     }

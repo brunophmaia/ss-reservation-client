@@ -55,7 +55,7 @@ export default function CreateAccount() {
                                 accountForm.lastName.value,
                                 accountForm.birthDate.value,
                                 accountForm.gender.value,
-                                accountForm.accountType.value,
+                                //accountForm.accountType.value,
                                 accountForm.email.value,
                                 accountForm.password.value,
                                 accountForm.phone.value,
@@ -72,11 +72,11 @@ export default function CreateAccount() {
       });
   };
 
-  useEffect(() => {
-      accountTypeService.getAll().then((accountTypes: Array<AccountType>) => {
-          setAccountTypes(accountTypes);
-      });
-  }, []);
+  // useEffect(() => {
+  //     accountTypeService.getAll().then((accountTypes: Array<AccountType>) => {
+  //         setAccountTypes(accountTypes);
+  //     });
+  // }, []);
 
   return (
     <div className='flex'>
@@ -147,7 +147,7 @@ export default function CreateAccount() {
                 )}
               </FormControl>
             </div>
-            <div className="p-b-16">
+            {/* <div className="p-b-16">
               <FormControl fullWidth required className="text-field-override">
                 <InputLabel id="account-type-id">{t('createAccount.accountTypeLabel')}</InputLabel>
                 <Select
@@ -185,7 +185,7 @@ export default function CreateAccount() {
                     </FormHelperText>
                 )}
               </FormControl>
-            </div>
+            </div> */}
             <div className="flex p-b-16">
               <EmailTextField
                 showHelper={!accountForm.email.valid}

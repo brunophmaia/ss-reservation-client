@@ -6,7 +6,7 @@ export class Account {
                  lastName: string,
                  birthDate: string,
                  gender: string,
-                 accountTypeId: number,
+                 //accountTypeId: number,
                  email: string,
                  password: string,
                  phone: string,
@@ -16,7 +16,7 @@ export class Account {
         this.lastName = lastName.trim();
         this.birthDate = getBirthDateFromStr(birthDate);
         this.gender = gender;
-        this.accountTypeId = accountTypeId;
+        //this.accountTypeId = accountTypeId;
         this.email = email.trim();
         this.password = password.trim();
         this.phone = getPhoneDigitsFromStr(phone);

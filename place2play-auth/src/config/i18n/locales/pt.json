@@ -44,12 +44,15 @@
         },
         "login": {
             "createAccount": "Não tem uma conta? Clique aqui para criar uma.",
+            "fillLoginType": "Por favor informe se deseja entrar como jogador(a) ou proprietário(a).",
             "inputEmailPswd": "Insira as credenciais.",
             "invalidCredentials": "Credenciais inválidas!",
             "login": "ENTRAR",
             "loginSuccess": "Login efetuado com sucesso",
             "loginWithEmail": "Entrar com e-mail e senha:",
             "or": "OU",
+            "owner": "PROPRIETÁRIO(A)",
+            "player": "JOGADOR(A)",
             "validEmail": "Por favor insira um e-mail válido."
         }
     }

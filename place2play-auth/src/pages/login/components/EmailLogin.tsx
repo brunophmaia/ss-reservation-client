@@ -11,7 +11,11 @@ import { getSnackbar } from '@/context/snackbar-context';
 import LoadingButton from '@/shared/components/loading-button/loading-button';
 import { Login } from '../models/login.model';
 
-export default function EmailLogin(){
+export interface EmailLoginProps {
+  loginType: string | undefined;
+}
+
+export default function EmailLogin({loginType} : EmailLoginProps){
 
     const { openSnackbar } = getSnackbar();
     const router = useRouter();
@@ -21,24 +25,34 @@ export default function EmailLogin(){
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [showLoading, setShowLoading] = useState<boolean>(false);
-    const [credentialError, setCredentialError] = useState(false);
+    const [formError, setFormError] = useState(false);
+    const [msgError, setMsgError] = useState<string>('');
 
     const loginService = new LoginService();
   
     const handleSubmit = (e: any) => {
       e.preventDefault();
 
-      const formInvalid: boolean = !username || !password;
+      let formInvalid: boolean = false;
+      setFormError(formInvalid);
 
-      setCredentialError(formInvalid);
+      if(!loginType) {
+        formInvalid = true;
+        setMsgError(t('login.fillLoginType'));
+      }
+      else if (!username || !password) {
+        formInvalid = true;
+        setMsgError(t('login.inputEmailPswd'));
+      }
 
       if(formInvalid) {
+        setFormError(formInvalid);
         return;
       }
 
       setShowLoading(true);
 
-      loginService.login(new Login(username, password)).then(() => {
+      loginService.login(new Login(username, password, loginType as string)).then(() => {
         openSnackbar(t('login.loginSuccess'), 'success');
         router.push('/');
       })
@@ -72,8 +86,8 @@ export default function EmailLogin(){
                   showLoading={showLoading}>
                 </LoadingButton>
               </div>
-              {credentialError && <div className={`p-t-4 ${styles.warning}`}>
-                {t('login.inputEmailPswd')}
+              {formError && <div className={`p-t-4 ${styles.warning}`}>
+                {msgError}
               </div>}
             </div>
           </Box>
